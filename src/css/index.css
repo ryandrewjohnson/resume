@@ -1,0 +1,222 @@
+/* pink: #ff4081 */
+/* blue: rgb(33,150,243) */
+
+html {
+  color: rgba(0,0,0,.87);
+  width: 100%;
+  height: 100%;
+  touch-action: manipulation;
+}
+
+html, body {
+  font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #fff;
+  width: 100%;
+  min-height: 100%;
+  position: relative;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+  /*z-index: 1;*/
+}
+body:before {
+  content: '';
+  width: 100%;
+  min-height: 100%;
+  background-image: url(//c1.staticflickr.com/8/7206/6965951717_dc86f94617_c.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center bottom;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  filter: blur(0px);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2 {
+  font-size: 45px;
+  font-weight: 400;
+  line-height: 48px;
+}
+
+h3 {
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 38px;
+}
+
+h4 {
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+p {
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0;
+  margin-bottom: 1.5rem;
+}
+
+
+.resume-container {
+  /*display: flex;*/
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 1.5rem;
+}
+
+.card {
+  background-color: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  border-radius: 2px;
+  margin-right: 1.5rem;
+  padding: 1.5rem;
+  flex: 1;
+}
+.card--profile {
+  /*flex-basis: 75%;*/
+  /*max-width: 75%;*/
+}
+.card--accounts {
+  flex: 0;
+  display: flex;
+}
+.card:last-child {
+  margin-right: 0;
+}
+.card *:last-child {
+  margin-bottom: 0;
+}
+
+.card-heading {
+  padding-bottom: 16px;
+  border-bottom: 3px solid rgb(33,150,243);
+}
+.card-heading span {
+  color: #ff4081;
+}
+.card-heading + .skill {
+  margin-top: 1.5rem;
+}
+
+.section-headng {
+  background-color: rgba(33,150,243, 0.8);
+  color: #fff;
+  padding: 1rem;
+  border-radius: 2px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+}
+
+.accounts {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.accounts > li > a {
+  color: #fff;
+  background-color: #ff4081;
+  border-radius: 2px;
+  display: inline-block;
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+  padding: 4px 8px;
+  min-width: 80px;
+  text-transform: uppercase;
+  will-change: box-shadow;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
+  text-decoration: none;
+  text-align: center;
+}
+.accounts > li > a:hover {
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+
+.job-list {
+  margin: 1.5rem 1.5rem 1.5rem 1rem;
+  padding: 0;
+  list-style: none;
+}
+.job-list > li {
+  margin-bottom: 0.5rem;
+  padding-left: 1em; 
+  text-indent: -1.2em;
+}
+.job-list > li:before {
+  content: "\2022 ";
+  color: #ff4081;
+  font-size: 2rem;
+  vertical-align: middle;
+  position: relative;
+  top: -2px;
+}
+
+.ratings {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+.ratings > li {
+  border-radius: 100%;
+  border: 2px solid #ff4081;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  margin-right: 8px;
+}
+.ratings > li.fill:before {
+  background-color: #ff4081;
+  border-radius: 100%;
+  content: '';
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+
+.skill {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  padding: 0.6rem 0;
+}
+.skill:last-child {
+  border-bottom: none;
+}
+.skill__heading {
+  font-size: 18px;
+  line-height: 1.2;
+  margin-right: 1rem;
+  text-transform: uppercase;
+}
