@@ -49,6 +49,7 @@ export default env => {
             {
               loader: 'css-loader',
               options: {
+                url: true,
                 importLoaders: 1
               }
             },
@@ -57,6 +58,15 @@ export default env => {
               options: {
                 plugins: () => [require('precss'), require('autoprefixer')]
               }
+            }
+          ]
+        },
+        {
+          test: /\.(gif|png|jpe?g|svg)$/i,
+          loaders: [
+            'file-loader',
+            {
+              loader: 'image-optimize-loader'
             }
           ]
         }

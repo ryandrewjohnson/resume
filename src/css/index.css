@@ -45,7 +45,7 @@ body:before {
   content: '';
   width: 100%;
   min-height: 100%;
-  background-image: url('//c1.staticflickr.com/8/7057/6965497685_14cc190dd5_k.jpg');
+  background-image: url(../images/background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center bottom;
