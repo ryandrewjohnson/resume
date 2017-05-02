@@ -1,6 +1,7 @@
 import webpack from 'webpack';
 import { resolve } from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import { getIfUtils, removeEmpty } from 'webpack-config-utils';
 
 export default env => {
@@ -11,11 +12,11 @@ export default env => {
     // ------------------------------------
     entry: {
       app: [
-        'index.js'
+        'index'
       ]
     },
 
-    context: resolve(__dirname, 'src'),
+    context: resolve(__dirname, 'client'),
 
     // ------------------------------------
     // Resolve
@@ -23,7 +24,7 @@ export default env => {
     resolve: {
       extensions: ['.webpack.js', '.web.js', '.js', '.json'],
       modules: [
-        resolve(__dirname, 'src'),
+        resolve(__dirname, 'client'),
         resolve(__dirname, 'node_modules')
       ]
     },
@@ -44,27 +45,34 @@ export default env => {
       rules: removeEmpty([
         {
           test: /\.css$/,
-          use: [
-            'style-loader', 
-            {
-              loader: 'css-loader',
-              options: {
-                url: true,
-                importLoaders: 1
+          use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              {
+                loader: 'css-loader',
+                options: {
+                  url: true,
+                  importLoaders: 1
+                }
+              },
+              { 
+                loader: 'postcss-loader',
+                options: {
+                  plugins: () => [require('precss'), require('autoprefixer')]
+                }
               }
-            },
-            { 
-              loader: 'postcss-loader',
-              options: {
-                plugins: () => [require('precss'), require('autoprefixer')]
-              }
-            }
-          ]
+            ]
+          })
         },
         {
           test: /\.(gif|png|jpe?g|svg)$/i,
           loaders: [
-            'file-loader',
+            {
+              loader: 'file-loader',
+              options: {
+                name: './assets/images/[name]-[hash].[ext]'
+              }
+            },
             {
               loader: 'image-optimize-loader'
             }
@@ -78,9 +86,15 @@ export default env => {
     // Plugins
     // ------------------------------------
     plugins: removeEmpty([
+      // new ExtractTextPlugin('assets/css/[name].[chunkhash].css'),
+      new ExtractTextPlugin("styles.css"),
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, 'src/index.html')
+        template: resolve(__dirname, 'client/index.html')
       }),
+      ifProd(new webpack.LoaderOptionsPlugin({
+        // minimize: true,
+        debug: true
+      })),
     ])
   }
 }
