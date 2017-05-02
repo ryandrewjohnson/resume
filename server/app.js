@@ -10,8 +10,6 @@ app.use(express.static(client));
 app.use(express.static(`${ client }/assets`));
 app.engine('html', hbs.__express);
 
-
-
 app.get('/', (req, res) => {
   res.render('index');
 });

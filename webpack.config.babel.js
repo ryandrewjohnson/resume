@@ -77,6 +77,20 @@ export default env => {
               loader: 'image-optimize-loader'
             }
           ]
+        },
+        {
+          test: /\.(pdf)$/i,
+          loaders: [
+            {
+              loader: 'file-loader',
+              options: {
+                name: './assets/pdf/[name]-[hash].[ext]'
+              }
+            },
+            {
+              loader: 'image-optimize-loader'
+            }
+          ]
         }
       ])
     },
@@ -89,7 +103,8 @@ export default env => {
       // new ExtractTextPlugin('assets/css/[name].[chunkhash].css'),
       new ExtractTextPlugin("styles.css"),
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, 'client/index.html')
+        template: resolve(__dirname, 'client/index.html'),
+        interpolate: true
       }),
       ifProd(new webpack.LoaderOptionsPlugin({
         // minimize: true,

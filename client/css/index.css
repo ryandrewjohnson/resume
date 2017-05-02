@@ -463,3 +463,25 @@ p {
     font-size: 1.2rem;
   }
 }
+
+.btn-round {
+  background-color: $pink;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.btn-round--print {
+  background-size: 45%;
+  background-image: url(../images/print.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-indent: -9999px;
+}
+.btn-round--download {
+  background-size: 45%;
+  background-image: url(../images/download.svg);
+  background-repeat: no-repeat;
+  background-position: center center;
+  text-indent: -9999px;
+}
+
