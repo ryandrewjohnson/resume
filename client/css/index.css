@@ -123,6 +123,16 @@ p {
   flex-direction: row;
   margin-bottom: 1.5rem;
 }
+.row--name {
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  @media (--large-viewport) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
 .row--profile {
   flex-direction: column;
 
@@ -466,6 +476,7 @@ p {
 
 .btn-round {
   background-color: $pink;
+  display: inline-block;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -476,6 +487,7 @@ p {
   background-repeat: no-repeat;
   background-position: center center;
   text-indent: -9999px;
+  margin-right: 1rem;
 }
 .btn-round--download {
   background-size: 45%;
@@ -485,3 +497,11 @@ p {
   text-indent: -9999px;
 }
 
+.resume-actions {
+  margin-top: 1rem;
+
+  @media (--large-viewport) {
+    margin-top: 0;
+    margin-right: 1rem;
+  }
+}
