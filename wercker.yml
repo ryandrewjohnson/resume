@@ -4,3 +4,13 @@
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
 box: node
+
+build:
+  steps:
+    - npm-install
+    - npm-build
+    - script:
+      name: echo nodejs information
+      code: |
+        echo "node version $(node -v) running"
+        echo "npm version $(npm -v) running"
