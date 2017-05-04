@@ -8,7 +8,6 @@ box: node
 build:
   steps:
     - npm-install
-    - npm-build
     - script:
       name: echo nodejs information
       code: |
