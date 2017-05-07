@@ -1,9 +1,17 @@
 FROM nodesource/node:6.0
 
-ADD package.json package.json
+ENV NODE_ENV=production
+
+COPY package.json .
+
 RUN npm install
-RUN npm install -g webpack
+
+# Copy source code
+COPY . .
+
+# Change working directory
+WORKDIR .
+
 RUN npm run build
-ADD . .
 
 CMD ["node", "server/app.js"]

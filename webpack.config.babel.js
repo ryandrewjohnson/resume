@@ -73,9 +73,9 @@ export default env => {
                 name: './assets/images/[name]-[hash].[ext]'
               }
             },
-            {
-              loader: 'image-optimize-loader'
-            }
+            // {
+            //   loader: 'image-optimize-loader'
+            // }
           ]
         },
         {
@@ -86,9 +86,6 @@ export default env => {
               options: {
                 name: './assets/pdf/[name]-[hash].[ext]'
               }
-            },
-            {
-              loader: 'image-optimize-loader'
             }
           ]
         }
