@@ -6,6 +6,8 @@ COPY package.json .
 
 RUN npm install
 
+ADD crash.sh /
+
 # Copy source code
 COPY . .
 
@@ -14,4 +16,5 @@ WORKDIR .
 
 RUN npm run build
 
-CMD ["node", "server/app.js"]
+# CMD ["node", "server/app.js"]
+CMD /bin/bash /crash.sh
