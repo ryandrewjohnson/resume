@@ -1,6 +1,0 @@
-resume:
-  build: .
-  restart: unless-stopped
-  ports:
-    - "80:3000"
-

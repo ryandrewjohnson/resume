@@ -1,0 +1,14 @@
+{
+  "name": "generate-resume",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ryan Johnson <ryan@shakainteractive.com> (http://shakainteractive.com/)",
+  "license": "ISC",
+  "dependencies": {
+    "render-webpage": "^0.1.1"
+  }
+}

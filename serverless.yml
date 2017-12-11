@@ -1,0 +1,74 @@
+service: ryanjohnsondotca
+
+frameworkVersion: ">=1.9.0 <2.0.0"
+
+plugins:
+  - serverless-single-page-app-plugin
+
+custom:
+  stage: ${opt:stage, self:provider.stage}
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs6.10
+  profile: ryandrewjohnson
+
+resources:
+  Resources:
+    ## Specifying the S3 Bucket
+    WebSite:
+      Type: "AWS::S3::Bucket"
+      Properties:
+        AccessControl: PublicRead
+        WebsiteConfiguration:
+          ErrorDocument: index.html
+          IndexDocument: index.html
+    ## Specifying the CloudFront Distribution to server your Web Application
+    WebSitePolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket:
+          Ref: WebSite
+        PolicyDocument:
+          Statement:
+            - Sid: PublicReadGetObject
+              Effect: Allow
+              Principal: "*"
+              Action:
+              - s3:GetObject
+              Resource: {"Fn::Join": ["", ["arn:aws:s3:::", {Ref: WebSite}, "/*"]]}
+    CDN:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Enabled: true
+          HttpVersion: http2
+          DefaultRootObject: index.html
+          Origins:
+            - DomainName: {"Fn::Join": ["", [{Ref: WebSite}, ".s3-website-us-east-1.s3.amazonaws.com"]]}
+              Id: WebApp
+              CustomOriginConfig:
+                HTTPPort: 80
+                HTTPSPort: 443
+                OriginProtocolPolicy: http-only
+          DefaultCacheBehavior:
+            ViewerProtocolPolicy: allow-all
+            ## The origin id defined above
+            TargetOriginId: WebApp
+            AllowedMethods:
+              - GET
+              - HEAD
+            Compress: true
+            DefaultTTL: 30
+            MinTTL: 10
+            ## Defining if and how the QueryString and Cookies are forwarded to the origin which in this case is S3
+            ForwardedValues:
+              QueryString: true
+
+## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
+  Outputs:
+    CDN:
+      Value:
+        "Fn::GetAtt": [CDN, DomainName]
+

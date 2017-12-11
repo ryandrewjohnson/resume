@@ -10,13 +10,9 @@ export default env => {
     // ------------------------------------
     // Entry Points
     // ------------------------------------
-    entry: {
-      app: [
-        'index'
-      ]
-    },
+    entry: 'index',
 
-    context: resolve(__dirname, 'client'),
+    context: resolve(__dirname, 'static'),
 
     // ------------------------------------
     // Resolve
@@ -24,7 +20,7 @@ export default env => {
     resolve: {
       extensions: ['.webpack.js', '.web.js', '.js', '.json'],
       modules: [
-        resolve(__dirname, 'client'),
+        resolve(__dirname, 'static'),
         resolve(__dirname, 'node_modules')
       ]
     },
@@ -97,16 +93,15 @@ export default env => {
     // Plugins
     // ------------------------------------
     plugins: removeEmpty([
-      // new ExtractTextPlugin('assets/css/[name].[chunkhash].css'),
-      new ExtractTextPlugin("styles.css"),
+      new ExtractTextPlugin('styles.[chunkhash].css'),
       new HtmlWebpackPlugin({
-        template: resolve(__dirname, 'client/index.html'),
+        template: resolve(__dirname, 'static/index.html'),
         interpolate: true
       }),
       ifProd(new webpack.LoaderOptionsPlugin({
-        // minimize: true,
+        minimize: true,
         debug: true
-      })),
+      }))
     ])
   }
 }
