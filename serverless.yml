@@ -12,7 +12,7 @@ provider:
   name: aws
   region: us-east-1
   runtime: nodejs6.10
-  profile: ryandrewjohnson
+  # profile: ryandrewjohnson
 
 resources:
   Resources:
@@ -20,11 +20,10 @@ resources:
     WebSite:
       Type: "AWS::S3::Bucket"
       Properties:
-        AccessControl: PublicRead
         WebsiteConfiguration:
           ErrorDocument: index.html
           IndexDocument: index.html
-    ## Specifying the CloudFront Distribution to server your Web Application
+    # Specifying the CloudFront Distribution to server your Web Application
     WebSitePolicy:
       Type: AWS::S3::BucketPolicy
       Properties:
@@ -68,7 +67,9 @@ resources:
 
 ## In order to print out the hosted domain via `serverless info` we need to define the DomainName output for CloudFormation
   Outputs:
-    CDN:
-      Value:
-        "Fn::GetAtt": [CDN, DomainName]
+    WebSiteUrl:
+      Value: {"Fn::GetAtt": [WebSite, WebsiteURL]}
+    WebSiteBucket:
+      Value: {Ref: WebSite}
+
 
