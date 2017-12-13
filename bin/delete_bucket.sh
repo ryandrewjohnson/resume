@@ -11,8 +11,7 @@ BUCKET_NAME=$(aws \
     cloudformation describe-stacks \
     --stack-name "ryanjohnsondotca-${STAGE}" \
     --query "Stacks[0].Outputs[?OutputKey=='WebSiteBucket'] | [0].OutputValue" \
-    --output text \
-    --profile ryanjohnson.ca-devops)
+    --output text)
 
 mkdir /tmp/empty
 
